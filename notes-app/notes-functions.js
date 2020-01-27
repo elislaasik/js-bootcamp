@@ -1,5 +1,5 @@
 
-console.log(uuidv4())
+//console.log(uuidv4())
 //read exisitng notes from local storage
 const getSavedNotes = function (){
     const notesJSON = localStorage.getItem('notes')
@@ -27,13 +27,13 @@ const removeNote = function(id){
         notes.splice(noteIndex, 1)
     }
 }
-//comment
+//c
 
 //generate the dom structure for a note
 const generateNoteDOM = function(note){
     const noteElement = document.createElement('div')
     const textElement = document.createElement('a')
-    textElement.setAttribute('href', '/edit.html')
+    
     const button = document.createElement('button')
 
     //setup the remove note button
@@ -43,6 +43,7 @@ const generateNoteDOM = function(note){
         removeNote(note.id)
         saveNotes(notes)
         renderNotes(notes,filters)
+        
     })
 
     //set up the note title text
@@ -51,6 +52,7 @@ const generateNoteDOM = function(note){
     } else {
         textElement.textContent = 'Unnamed note'
     }
+    textElement.setAttribute('href', `/notes-app/edit.html#${note.id}`)
     noteElement.appendChild(textElement)
 
     return noteElement
